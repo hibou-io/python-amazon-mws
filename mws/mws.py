@@ -9,7 +9,7 @@ import urllib
 import hashlib
 import hmac
 import base64
-import utils
+from . import utils
 import re
 try:
     from xml.etree.ElementTree import ParseError as XMLError
@@ -206,7 +206,7 @@ class MWS(object):
             except XMLError:
                 parsed_response = DataWrapper(data, response.headers)
 
-        except HTTPError, e:
+        except HTTPError as e:
             error = MWSError(str(e.response.text))
             error.response = e.response
             raise error
