@@ -81,7 +81,7 @@ def remove_empty(d):
 
 def remove_namespace(xml):
     regex = re.compile(' xmlns(:ns2)?="[^"]+"|(ns2:)|(xml:)')
-    return regex.sub('', xml)
+    return regex.sub('', str(xml))
 
 
 class DictWrapper(object):
