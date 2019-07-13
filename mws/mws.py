@@ -227,7 +227,8 @@ class MWS(object):
         """Calculate MWS signature to interface with Amazon
         """
         sig_data = method + '\n' + self.domain.replace('https://', '').lower() + '\n' + self.uri + '\n' + request_description
-        return base64.b64encode(hmac.new(str(self.secret_key), sig_data, hashlib.sha256).digest())
+        return base64.b64encode(hmac.new(str(self.secret_key).encode(), sig_data.encode(), hashlib.sha256).digest())
+
 
     def get_timestamp(self):
         """
