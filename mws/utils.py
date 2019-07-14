@@ -59,7 +59,7 @@ class xml2dict(object):
         node_tree = object_dict()
         # Save attrs and text, hope there will not be a child with same name
         if node.text:
-            node_tree.value = str(node.text)
+            node_tree.value = node.text
         for (k, v) in node.attrib.items():
             k, v = self._namespace_split(k, object_dict({'value':v}))
             node_tree[k] = v
@@ -79,9 +79,6 @@ class xml2dict(object):
         return node_tree
 
     def _namespace_split(self, tag, value):
-        tag = str(tag)
-        if isinstance(value, bytes):
-            value = str(value)
         """
         Split the tag '{http://cs.sfsu.edu/csc867/myscheduler}patients'
         ns = http://cs.sfsu.edu/csc867/myscheduler
