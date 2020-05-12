@@ -73,9 +73,12 @@ def remove_empty(d):
         Helper function that removes all keys from a dictionary (d),
         that have an empty value.
     """
+    keys_to_delete = []
     for key in d.keys():
         if not d[key]:
-            del d[key]
+            keys_to_delete.append(key)
+    for key in keys_to_delete:
+        del d[key]
     return d
 
 
@@ -404,9 +407,9 @@ class Reports(MWS):
 class Orders(MWS):
     """ Amazon Orders API """
 
-    URI = "/Orders/2011-01-01"
-    VERSION = "2011-01-01"
-    NS = '{https://mws.amazonservices.com/Orders/2011-01-01}'
+    URI = "/Orders/2013-09-01"
+    VERSION = "2013-09-01"
+    NS = '{https://mws.amazonservices.com/Orders/2013-09-01}'
 
     def list_orders(self, marketplaceids, created_after=None, created_before=None, lastupdatedafter=None,
                     lastupdatedbefore=None, orderstatus=(), fulfillment_channels=(),
